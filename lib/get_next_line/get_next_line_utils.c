@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: noavetis <noavetis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 21:13:15 by noavetis          #+#    #+#             */
-/*   Updated: 2025/03/21 14:57:56 by noavetis         ###   ########.fr       */
+/*   Created: 2025/02/12 21:15:43 by noavetis          #+#    #+#             */
+/*   Updated: 2025/03/21 14:56:59 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "get_next_line.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
+size_t	ft_strlen(const char *buffer)
+{
+	size_t	i;
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
-# endif
+	i = 0;
+	while (buffer[i])
+		i++;
+	return (i);
+}
 
-char	*get_next_line(int fd);
-size_t	ft_strlen(const char *buffer);
-size_t	check_n(const char *buffer);
+size_t	check_n(const char *buffer)
+{
+	size_t	i;
 
-#endif
+	i = 0;
+	while (buffer[i])
+	{
+		if (buffer[i] == '\n')
+			return (i + 1);
+		i++;
+	}
+	return (0);
+}
