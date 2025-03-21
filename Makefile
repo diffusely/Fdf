@@ -13,7 +13,7 @@ INCLUDES	= includes
 
 SRC_DIR		= src/
 
-SRC			= main.c
+SRC			= main.c $(SRC_DIR)error.c
 
 OBJ			= $(SRC:%.c=%.o)
 

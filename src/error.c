@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: noavetis <noavetis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 21:13:15 by noavetis          #+#    #+#             */
-/*   Updated: 2025/03/21 17:38:08 by noavetis         ###   ########.fr       */
+/*   Created: 2025/03/21 16:59:07 by noavetis          #+#    #+#             */
+/*   Updated: 2025/03/21 19:18:49 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "fdf.h"
 
-# include "libft.h"
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
-# endif
-
-char	*get_next_line(int fd);
-size_t	check_n(const char *buffer);
-
-#endif
+void	error_handle(char *message)
+{
+	ft_putstr_fd(message, 1);
+}
