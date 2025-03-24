@@ -1,7 +1,7 @@
 NAME		= fdf
 
 MLIBX		= lib/minilibx/
-MLIBX_NAME	= $(MLIBX)libmlx.a
+MLIBX_NAME	= -L$(MLIBX) -lmlx
 
 GNL			= lib/get_next_line/
 GNL_NAME	= -L$(GNL) -lgnl
@@ -13,7 +13,7 @@ INCLUDES	= includes
 
 SRC_DIR		= src/
 
-SRC			= main.c $(SRC_DIR)error.c
+SRC			= main.c $(SRC_DIR)validation.c
 
 OBJ			= $(SRC:%.c=%.o)
 
