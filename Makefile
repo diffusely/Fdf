@@ -1,29 +1,21 @@
 NAME		= fdf
 
 MLIBX		= lib/minilibx/
-MLIBX_NAME	= -L$(MLIBX) -lmlx
-
 GNL			= lib/get_next_line/
-GNL_NAME	= -L$(GNL) -lgnl
-
 LIBFT		= lib/libft/
-LIBFT_NAME	= -L$(LIBFT) -lft
-
 INCLUDES	= includes
-
 SRC_DIR		= src/
 
-SRC			= main.c $(SRC_DIR)validation.c
-
+SRC			= main.c $(SRC_DIR)validation.c $(SRC_DIR)utils.c $(SRC_DIR)line.c 
 OBJ			= $(SRC:%.c=%.o)
 
+MLX_FLAGS	= -L$(MLIBX) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
+LIB_FLAGS	= -L$(GNL) -lgnl -L$(LIBFT) -lft
 IFLAG		= -I $(INCLUDES)
 CFLAG		= -Wall -Wextra -Werror
 
 CC			= cc
-
 AR			= ar rcs
-
 RM			= rm -rf
 
 
@@ -32,17 +24,12 @@ all:				$(NAME)
 .c.o:
 					$(CC) $(CFLAG) $(IFLAG) -Wall -Wextra -Werror -I/usr/include -O3 -c $< -o $(<:.c=.o)
 
-$(NAME):			$(OBJ) $(GNL_NAME) $(MLIBX_NAME) $(LIBFT_NAME)
-					$(CC) $(CFLAG) $^ -o $(NAME) -L/usr/lib -lXext -lX11 -lm -lz
-
-$(GNL_NAME):		
-					make -C $(GNL)
-
-$(MLIBX_NAME):
-					make -C $(MLIBX)
-
-$(LIBFT_NAME):
+$(NAME):			$(OBJ)
 					make -C $(LIBFT)
+					make -C $(GNL)
+					make -C $(MLIBX)
+					$(CC) $(CFLAG) $(OBJ) $(LIB_FLAGS) $(MLX_FLAGS) -o $(NAME)
+
 
 mainclean:
 					$(RM) $(OBJ)
