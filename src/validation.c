@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: noavetis <noavetis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 16:59:07 by noavetis          #+#    #+#             */
-/*   Updated: 2025/03/25 19:15:54 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/03/26 16:27:54 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	valid_map(char *message)
 	}
 }
 
-void	open_file(int *fd, const char* file_name)
+void	open_file(int *fd, const char *file_name)
 {
 	*fd = open(file_name, O_RDONLY);
 	if (*fd == -1)

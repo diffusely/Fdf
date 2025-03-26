@@ -6,7 +6,8 @@ LIBFT		= lib/libft/
 INCLUDES	= includes
 SRC_DIR		= src/
 
-SRC			= main.c $(SRC_DIR)validation.c $(SRC_DIR)utils.c $(SRC_DIR)line.c 
+SRC			= main.c $(SRC_DIR)validation.c $(SRC_DIR)utils.c $(SRC_DIR)line.c $(SRC_DIR)init.c \
+			  
 OBJ			= $(SRC:%.c=%.o)
 
 MLX_FLAGS	= -L$(MLIBX) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
