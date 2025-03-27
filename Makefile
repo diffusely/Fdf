@@ -13,7 +13,7 @@ OBJ			= $(SRC:%.c=%.o)
 MLX_FLAGS	= -L$(MLIBX) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
 LIB_FLAGS	= -L$(GNL) -lgnl -L$(LIBFT) -lft
 IFLAG		= -I $(INCLUDES)
-CFLAG		= -Wall -Wextra -Werror
+CFLAG		= -Wall -Wextra -Werror -fsanitize=address
 
 CC			= cc
 AR			= ar rcs
