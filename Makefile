@@ -7,13 +7,15 @@ INCLUDES	= includes
 SRC_DIR		= src/
 
 SRC			= main.c $(SRC_DIR)validation.c $(SRC_DIR)utils.c $(SRC_DIR)line.c $(SRC_DIR)init.c \
-			  
+			$(SRC_DIR)display.c
+
 OBJ			= $(SRC:%.c=%.o)
 
 MLX_FLAGS	= -L$(MLIBX) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
 LIB_FLAGS	= -L$(GNL) -lgnl -L$(LIBFT) -lft
 IFLAG		= -I $(INCLUDES)
-CFLAG		= -Wall -Wextra -Werror -fsanitize=address
+LFLAG		= -fsanitize=address
+CFLAG		= -Wall -Wextra -Werror $(LFLAG)
 
 CC			= cc
 AR			= ar rcs

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noavetis <noavetis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 21:09:37 by noavetis          #+#    #+#             */
-/*   Updated: 2025/03/27 21:12:17 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/03/30 23:15:50 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,54 +23,34 @@ void	print(t_map m)
 		j = 0;
 		while (j < m.width)
 		{
-			printf("%d",m.arr[i][j]);
+			printf("%d ",m.matrix[i][j]);
 			j++;
 		}
+		printf("\n");
 		i++;
 	}
-}
-
-
-int	key_hook(int keycode, void *param)
-{
-	if (keycode == ESC_KEY)
-	{
-		mlx_loop_end(param);
-	}
-	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	int		fd;
 	t_map	m;
-	//t_view	v;
+	t_view	v;
 
 	(void)m;
 	(void)fd;
 	(void)argv;
-	//(void)v;
 	if (argc != 2)
 	{
 		error_handle("Usage: ./fdf <file>\n", 1);
 	}
 
-	m.width = get_width(argv[1]);
-	m.height = get_height(argv[1]);
+	init_matrix(&m , argv[1]);
+	print(m);
+	//free_matrix(&m);
 	
-	//fd = open_file(argv[1]);
-
-
-	// init matrix
-	//m.arr = init_matrix(v, fd);
-	//print(m);
-
-	
-	// mlx
-    //v.mlx = mlx_init();
-    //v.win = mlx_new_window(v.mlx, WIDTH, HEIGHT, "MiniLibX Window");
-	//mlx_key_hook(v.win, key_hook, v.mlx); 
-    //mlx_loop(v.mlx);
-	
+	//draw_map(m, &v);
+	init_window(&m, &v);
+	free_matrix(&m);
 	return (0);
 }

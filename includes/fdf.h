@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noavetis <noavetis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 21:58:42 by noavetis          #+#    #+#             */
-/*   Updated: 2025/03/27 20:54:56 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/03/30 23:28:38 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@
 # include <stdio.h>
 # include <unistd.h>
 
-# define WIDTH	1920
-# define HEIGHT	1080
+# define WIDTH	800
+# define HEIGHT	600
 
 # define ESC_KEY 65307
+#define ANGLE 0.523599
 
 typedef struct s_coord
 {
@@ -40,9 +41,10 @@ typedef struct s_coord
 
 typedef struct s_map
 {
-	int	**arr;
+	int	**matrix;
 	int	width;
 	int	height;
+	t_coord point;
 }	t_map;
 
 typedef struct s_view
@@ -60,9 +62,16 @@ void	fd_close(int fd);
 
 void	draw_line(t_coord start, t_coord end, t_view view);
 
-int		**init_matrix(t_view v, char *line, int fd);
+// init
+void	init_matrix(t_map *m, const char *file_name);
 int		get_width(const char *file_name);
 int		get_height(const char *file_name);
 size_t	word_count_sep(const char *str, char *s);
+void	free_matrix(t_map *m);
+
+// display
+int		key_hook(int keycode, void *param);
+void	draw_map(t_map *m, t_view *v);
+void	init_window(t_map *m, t_view *v);
 
 #endif

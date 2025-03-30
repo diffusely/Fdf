@@ -3,19 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noavetis <noavetis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:30:01 by noavetis          #+#    #+#             */
-/*   Updated: 2025/03/27 21:11:00 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/03/30 22:20:27 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// static void	matrix_helper()
-// {
-	
-// }
+void	free_matrix(t_map *m)
+{
+	int	i;
+
+	i = 0;
+	while (i < (*m).height)
+	{
+		free((*m).matrix[i]);
+		i++;
+	}
+	free((*m).matrix);
+}
 
 int	get_width(const char *file_name)
 {
@@ -59,24 +67,55 @@ int	get_height(const char *file_name)
 	return (fd_close(fd), height);
 }
 
-// int	**init_matrix(t_view v, char *line, int fd)
-// {
-// 	char	**num;
-// 	char	*ptr;
-// 	char	*res;
+int	*init_matrix_line(int width, int fd)
+{
+	char	**ptr;
+	char	*r;
+	int		*line;
+	int		i;
 
-// 	(void)v;
-// 	num = ft_split(line, ' ');
-	
-// 	res = get_next_line(fd);
-// 	ptr = res;
-// 	while (ptr)
-// 	{
-// 		ptr = get_next_line(fd);
-// 		if (!ptr)
-// 			break ;
-// 		res = ft_strjoin(res, ptr);
-// 	}
-// 	//ft_putstr_fd(res, 1);
-// 	return (num);
-// }
+	r = get_next_line(fd);
+	if (!r)
+		return (NULL);
+	ptr = ft_split(r, ' ');
+	line = (int *)malloc(width * sizeof(int));
+	if (!line)
+		error_handle("Bad alloc *line*!\n", 1);
+	i = 0;
+	while (i < width)
+	{
+		line[i] = ft_atoi(ptr[i]);
+		i++;
+	}
+	while (--i >= 0)
+		free(ptr[i]);
+	return (free(r), free(ptr), line);
+}
+
+void	init_matrix(t_map *m, const char *file_name)
+{
+	int		fd;
+	int		i;
+
+	fd = open_file(file_name);
+	(*m).height = get_height(file_name);
+	(*m).width = get_width(file_name);
+	(*m).matrix = (int **)malloc((*m).height * sizeof(int *));
+	if (!(*m).matrix)
+		error_handle("Bad alloc *matrix*!\n", 1);
+	i = 0;
+	while (i < (*m).height)
+	{
+		(*m).matrix[i] = init_matrix_line((*m).width, fd);
+		if (!(*m).matrix[i])
+		{
+			while (--i > 0)
+				free((*m).matrix[i]);
+			free((*m).matrix);
+			fd_close(fd);
+			error_handle("Map is not valid!\n", 1);
+		}
+		i++;
+	}
+	fd_close(fd);
+}

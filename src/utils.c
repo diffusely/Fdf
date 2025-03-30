@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noavetis <noavetis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 20:49:03 by noavetis          #+#    #+#             */
-/*   Updated: 2025/03/27 21:00:15 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/03/30 22:13:17 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_swap(int *a, int *b)
 int	open_file(const char *file_name)
 {
 	int	fd;
-	
+
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 	{
