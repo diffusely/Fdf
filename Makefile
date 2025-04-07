@@ -15,7 +15,7 @@ MLX_FLAGS	= -L$(MLIBX) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
 LIB_FLAGS	= -L$(GNL) -lgnl -L$(LIBFT) -lft
 IFLAG		= -I $(INCLUDES)
 LFLAG		= -fsanitize=address
-CFLAG		= -Wall -Wextra -Werror $(LFLAG)
+CFLAG		= -Wall -Wextra -Werror
 
 CC			= cc
 AR			= ar rcs

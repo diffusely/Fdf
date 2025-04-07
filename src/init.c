@@ -6,7 +6,7 @@
 /*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:30:01 by noavetis          #+#    #+#             */
-/*   Updated: 2025/03/30 22:20:27 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/07 18:56:48 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,20 @@ void	free_matrix(t_map *m)
 	int	i;
 
 	i = 0;
-	while (i < (*m).height)
+	while (i < m->height)
 	{
-		free((*m).matrix[i]);
+		if (m->matrix[i])
+		{
+			free(m->matrix[i]);
+			m->matrix[i] = NULL;
+		}
 		i++;
 	}
-	free((*m).matrix);
+	if (m->matrix)
+	{
+		free(m->matrix);
+		m->matrix = NULL;
+	}
 }
 
 int	get_width(const char *file_name)

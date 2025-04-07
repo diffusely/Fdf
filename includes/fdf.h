@@ -6,7 +6,7 @@
 /*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 21:58:42 by noavetis          #+#    #+#             */
-/*   Updated: 2025/03/30 23:28:38 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/01 20:41:47 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_view
 {
 	void	*mlx;
 	void	*win;
+	t_map	*map;
 }	t_view;
 
 void	ft_swap(int *a, int *b);
@@ -73,5 +74,8 @@ void	free_matrix(t_map *m);
 int		key_hook(int keycode, void *param);
 void	draw_map(t_map *m, t_view *v);
 void	init_window(t_map *m, t_view *v);
+
+// test
+void	print(t_map m);
 
 #endif
