@@ -6,7 +6,7 @@
 /*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 21:58:42 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/01 20:41:47 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/08 00:08:08 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ typedef struct s_view
 {
 	void	*mlx;
 	void	*win;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		ll;
+	int		endian;
+	int		color;
 	t_map	*map;
 }	t_view;
 
@@ -61,7 +67,8 @@ void	error_handle(char *message, int flag);
 void	valid_map(char *message);
 void	fd_close(int fd);
 
-void	draw_line(t_coord start, t_coord end, t_view view);
+void	draw_line(t_coord start, t_coord end, t_view *view);
+void	ft_pixel_put(t_view *v, int x, int y, int color);
 
 // init
 void	init_matrix(t_map *m, const char *file_name);

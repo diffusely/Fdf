@@ -6,7 +6,7 @@
 /*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 20:49:03 by noavetis          #+#    #+#             */
-/*   Updated: 2025/03/30 22:13:17 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/07 23:37:52 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,12 @@ size_t	word_count_sep(const char *str, char *s)
 			str++;
 	}
 	return (count);
+}
+
+void	ft_pixel_put(t_view *v, int x, int y, int color)
+{
+	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
+		return ;
+	char *dst = v->addr + (y * v->ll + x * (v->bpp / 8));
+	*(unsigned int *)dst = color;
 }

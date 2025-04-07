@@ -21,6 +21,5 @@ int	main(int argc, char **argv)
 	
 	//draw_map(m, &v);
 	init_window(&m, &v);
-	//free_matrix(&m);
 	return (0);
 }

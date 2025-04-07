@@ -6,7 +6,7 @@
 /*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 20:48:36 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/01 19:58:13 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/08 00:08:23 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	check_helper(int *dir, float *d)
 	*d *= *dir;
 }
 
-static void	draw_line_h(t_coord st, t_coord end, t_view v)
+static void	draw_line_h(t_coord st, t_coord end, t_view *v)
 {
 	float	dx;
 	float	dy;
@@ -48,7 +48,7 @@ static void	draw_line_h(t_coord st, t_coord end, t_view v)
 		p = 2 * dy - dx;
 		while (++i < dx + 1)
 		{
-			mlx_pixel_put(v.mlx, v.win, st.x + i, st.y, 0xFFFFFF);
+			ft_pixel_put(v, st.x + i, st.y, v->color);
 			if (p >= 0)
 			{
 				st.y += dir;
@@ -59,7 +59,7 @@ static void	draw_line_h(t_coord st, t_coord end, t_view v)
 	}
 }
 
-static void	draw_line_v(t_coord st, t_coord end, t_view v)
+static void	draw_line_v(t_coord st, t_coord end, t_view *v)
 {
 	float	dx;
 	float	dy;
@@ -77,7 +77,7 @@ static void	draw_line_v(t_coord st, t_coord end, t_view v)
 		p = 2 * dx - dy;
 		while (++i < dy + 1)
 		{
-			mlx_pixel_put(v.mlx, v.win, st.x, st.y + i, 0xFFFFFF);
+			ft_pixel_put(v, st.x, st.y + i, v->color);
 			if (p >= 0)
 			{
 				st.x += dir;
@@ -88,7 +88,7 @@ static void	draw_line_v(t_coord st, t_coord end, t_view v)
 	}
 }
 
-void	draw_line(t_coord st, t_coord end, t_view v)
+void	draw_line(t_coord st, t_coord end, t_view *v)
 {
 	if (abs(end.x - st.x) > abs(end.y - st.y))
 		draw_line_h(st, end, v);
