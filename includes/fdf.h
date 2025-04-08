@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: noavetis <noavetis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 21:58:42 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/08 00:08:08 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/08 18:45:55 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@
 # include <stdio.h>
 # include <unistd.h>
 
-# define WIDTH	800
-# define HEIGHT	600
+# define WIDTH	1920
+# define HEIGHT	1080
 
 # define ESC_KEY 65307
-#define ANGLE 0.523599
+# define ANGLE 0.45
+# define ZOOM_IN_KEY 24
+# define ZOOM_OUT_KEY 27
 
 typedef struct s_coord
 {
@@ -57,6 +59,7 @@ typedef struct s_view
 	int		ll;
 	int		endian;
 	int		color;
+	float	zoom;
 	t_map	*map;
 }	t_view;
 

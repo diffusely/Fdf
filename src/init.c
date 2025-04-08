@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: noavetis <noavetis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:30:01 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/07 18:56:48 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:15:44 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,20 +106,20 @@ void	init_matrix(t_map *m, const char *file_name)
 	int		i;
 
 	fd = open_file(file_name);
-	(*m).height = get_height(file_name);
-	(*m).width = get_width(file_name);
-	(*m).matrix = (int **)malloc((*m).height * sizeof(int *));
-	if (!(*m).matrix)
+	m->height = get_height(file_name);
+	m->width = get_width(file_name);
+	m->matrix = (int **)malloc((*m).height * sizeof(int *));
+	if (!m->matrix)
 		error_handle("Bad alloc *matrix*!\n", 1);
 	i = 0;
-	while (i < (*m).height)
+	while (i < m->height)
 	{
-		(*m).matrix[i] = init_matrix_line((*m).width, fd);
+		m->matrix[i] = init_matrix_line(m->width, fd);
 		if (!(*m).matrix[i])
 		{
 			while (--i > 0)
-				free((*m).matrix[i]);
-			free((*m).matrix);
+				free(m->matrix[i]);
+			free(m->matrix);
 			fd_close(fd);
 			error_handle("Map is not valid!\n", 1);
 		}
