@@ -6,7 +6,7 @@
 /*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 16:59:07 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/09 16:42:22 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:35:34 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,10 @@ void	free_matrix(t_map *m)
 	i = 0;
 	while (i < m->height)
 	{
-		if (m->mt[i])
-		{
-			free(m->mt[i]);
-			m->mt[i] = NULL;
-		}
+		free(m->mt[i]);
+		m->mt[i] = NULL;
 		i++;
 	}
-	if (m->mt)
-	{
-		free(m->mt);
-		m->mt = NULL;
-	}
+	free(m->mt);
+	m->mt = NULL;
 }

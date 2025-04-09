@@ -6,7 +6,7 @@
 /*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 21:58:42 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/09 22:53:18 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/10 01:45:52 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ size_t	word_count_sep(const char *str, char *s);
 void	free_matrix(t_map *m);
 
 // display
-int		key_hook(int keycode, void *param);
+int		key_hook(int keycode, t_view *v);
 void	draw_map(t_view *v);
 void	init_window(t_view *v);
 

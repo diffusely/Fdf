@@ -6,7 +6,7 @@
 /*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:30:01 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/09 22:43:16 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/10 02:06:23 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ static int	*init_matrix_line(int width, int fd)
 		line[i] = ft_atoi(ptr[i]);
 		i++;
 	}
-	while (--i >= 0)
-		free(ptr[i]);
+	i = 0;
+	while (ptr[i])
+		free(ptr[i++]);
 	return (free(r), free(ptr), line);
 }
 
@@ -57,7 +58,7 @@ void	init_window(t_view *v)
 	v->map->point.y = 0;
 	draw_map(v);
 	mlx_put_image_to_window(v->mlx, v->win, v->img, 0, 0);
-	mlx_key_hook(v->win, key_hook, v);
+	mlx_hook(v->win, 2, 1L << 0, key_hook, v);
 	mlx_mouse_hook(v->win, mouse_hook, v);
 	mlx_hook(v->win, 17, 0, close_window, v);
 	mlx_loop(v->mlx);
@@ -80,7 +81,7 @@ t_map	*init_matrix(const char *file_name)
 		m->mt[i] = init_matrix_line(m->width, fd);
 		if (!m->mt[i])
 		{
-			while (--i > 0)
+			while (--i >= 0)
 				free(m->mt[i]);
 			free(m->mt);
 			fd_close(fd);

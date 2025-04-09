@@ -6,17 +6,14 @@
 /*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 21:03:45 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/09 23:36:10 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/10 01:48:55 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	key_hook(int keycode, void *param)
+int	key_hook(int keycode, t_view *v)
 {
-	t_view	*v;
-
-	v = (t_view *)param;
 	if (keycode == ESC_KEY)
 		free_all(v);
 	else if (keycode == A)
@@ -33,8 +30,9 @@ int	key_hook(int keycode, void *param)
 
 void	free_all(t_view *v)
 {
-	mlx_destroy_window(v->mlx, v->win);
 	mlx_destroy_image(v->mlx, v->img);
+	mlx_destroy_window(v->mlx, v->win);
+	mlx_destroy_display(v->mlx);
 	free_matrix(v->map);
 	free(v->map);
 	free(v->mlx);
