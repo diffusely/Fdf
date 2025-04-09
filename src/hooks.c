@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noavetis <noavetis@student.42.fr>          +#+  +:+       +#+        */
+/*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 21:03:45 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/08 21:06:56 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/09 23:36:10 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,57 +18,69 @@ int	key_hook(int keycode, void *param)
 
 	v = (t_view *)param;
 	if (keycode == ESC_KEY)
-	{
-		free_all(v, v->map);
-	}
+		free_all(v);
+	else if (keycode == A)
+		v->map->point.x -= 10;
+	else if (keycode == S)
+		v->map->point.y += 10;
+	else if (keycode == D)
+		v->map->point.x += 10;
+	else if (keycode == W)
+		v->map->point.y -= 10;
+	new_img(v);
 	return (0);
 }
 
-static void	free_all(t_view *v, t_map	*m)
+void	free_all(t_view *v)
 {
 	mlx_destroy_window(v->mlx, v->win);
-	free_matrix(m);
+	mlx_destroy_image(v->mlx, v->img);
+	free_matrix(v->map);
+	free(v->map);
 	free(v->mlx);
+	free(v);
 	exit(0);
 }
 
-int close_window(void *param)
+int	close_window(void *param)
 {
 	t_view	*v;
 
 	v = (t_view *)param;
-	free_all(v, v->map);
+	free_all(v);
 	return (0);
 }
 
-int mouse_hook(int button, int x, int y, void *param)
+void	new_img(t_view	*v)
+{
+	mlx_destroy_image(v->mlx, v->img);
+	v->img = mlx_new_image(v->mlx, WIDTH, HEIGHT);
+	v->addr = mlx_get_data_addr(v->img, &v->bpp, &v->ll, &v->endian);
+	draw_map(v);
+	mlx_put_image_to_window(v->mlx, v->win,
+		v->img, 0, 0);
+}
+
+int	mouse_hook(int button, int x, int y, void *param)
 {
 	t_view	*v;
 
 	(void)x;
 	(void)y;
 	v = (t_view *)param;
-    if (button == 4)
-    {
-		v->zoom *= 1.1;
-		if (v->zoom > 5.0f)
-		v->zoom = 5.0f;
-
-		free(v->img);
-		v->img = mlx_new_image(v->mlx, WIDTH, HEIGHT);
-		v->addr = mlx_get_data_addr(v->img, &v->bpp, &v->ll, &v->endian);
-		draw_map(m, v);
-		mlx_put_image_to_window(v->mlx, v->win, v->img, 0, 0);
+	if (button == ZOOM_IN_KEY)
+	{
+		v->zoom *= 1.1f;
+		if (v->zoom > 2.0f)
+			v->zoom = 2.0f;
+		new_img(v);
 	}
-	else if (button == 5)  // Scroll down
+	else if (button == ZOOM_OUT_KEY)
 	{
 		v->zoom *= 0.9;
-		free(v->img);
-		v->img = mlx_new_image(v->mlx, WIDTH, HEIGHT);
-		v->addr = mlx_get_data_addr(v->img, &v->bpp, &v->ll, &v->endian);
-		draw_map(m, v); // Initial map drawing
-		mlx_put_image_to_window(v->mlx, v->win, v->img, 0, 0);
-    }
-
-    return (0);
+		if (v->zoom < 0.05f)
+			v->zoom = 0.05f;
+		new_img(v);
+	}
+	return (0);
 }
