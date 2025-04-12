@@ -53,4 +53,4 @@ cd fdf
 make
 ./fdf maps/42.fdf
 
-![42 Yerevan Logo](42.png)
+![42 Logo](https://github.com/user-attachments/assets/c68535b5-2a69-4123-8f43-ecac88868923)
