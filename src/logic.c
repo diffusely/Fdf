@@ -6,7 +6,7 @@
 /*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 20:59:49 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/12 19:51:01 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/12 20:38:10 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,11 @@ void	rotation(float *x, float *y, float *z, t_view *v)
 	if (v->flag == 0)
 		rotation_x(x, y, v->rot);
 	else if (v->flag == 1)
-		rotation_y(x, z, v->rot);
+		rotation_y(y, z, v->rot);
 	else if (v->flag == 2)
 	{
 		rotation_x(x, y, v->rot);
-		rotation_y(x, z, v->rot);
+		rotation_y(y, z, v->rot);
+		rotation_y(z, x, v->rot);
 	}
 }
