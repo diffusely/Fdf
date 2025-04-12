@@ -53,5 +53,5 @@ cd fdf
 make
 ./fdf maps/42.fdf
 
-![image alt](https://github.com/diffusely/assets/blob/main/42.png?raw=true)
+![Image](https://github.com/user-attachments/assets/daf97653-d27e-43d5-b07c-53a4937f7417)
 
