@@ -52,3 +52,5 @@ git clone https://github.com/diffusely/Fdf.git
 cd fdf
 make
 ./fdf maps/42.fdf
+
+![alt text](42.png)

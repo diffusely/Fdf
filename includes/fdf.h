@@ -6,7 +6,7 @@
 /*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 21:58:42 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/12 19:55:20 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/12 21:00:13 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include "mlx.h"
 # include "libft.h"
 
-# define WIDTH	800
-# define HEIGHT	600
+# define WIDTH	1200
+# define HEIGHT	800
 # define SIZE 100
 
 # define ESC_KEY 65307
