@@ -6,7 +6,7 @@
 /*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:30:01 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/10 02:06:23 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/12 19:52:28 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	*init_matrix_line(int width, int fd)
 	i = 0;
 	while (i < width)
 	{
-		line[i] = ft_atoi(ptr[i]);
+		line[i] = ft_atoi(ptr[i]) * 10;
 		i++;
 	}
 	i = 0;
@@ -54,9 +54,13 @@ void	init_window(t_view *v)
 	v->img = mlx_new_image(v->mlx, WIDTH, HEIGHT);
 	v->addr = mlx_get_data_addr(v->img, &v->bpp, &v->ll, &v->endian);
 	v->zoom = 0.3f;
+	v->flag = 0;
+	v->t_flag = 1;
 	v->map->point.x = 0;
 	v->map->point.y = 0;
-	draw_map(v);
+	v->rot = 0;
+	fill_background(v, 0x0A0E2A);
+	draw_map(v, SCOLOR, ECOLOR);
 	mlx_put_image_to_window(v->mlx, v->win, v->img, 0, 0);
 	mlx_hook(v->win, 2, 1L << 0, key_hook, v);
 	mlx_mouse_hook(v->win, mouse_hook, v);

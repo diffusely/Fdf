@@ -6,7 +6,7 @@
 /*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 20:48:36 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/09 20:57:54 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:24:28 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,19 @@ static void	draw_line_h(t_coord st, t_coord end, t_view *v)
 	dx = end.x - st.x;
 	dy = end.y - st.y;
 	check_helper(&dir, &dy);
-	if (dx != 0)
+	if (dx == 0)
+		return ;
+	p = 2 * dy - dx;
+	while (++i < dx + 1)
 	{
-		p = 2 * dy - dx;
-		while (++i < dx + 1)
+		v->color = interpolate_color(st.color, end.color, (float)i / dx);
+		ft_pixel_put(v, st.x + i, st.y, v->color);
+		if (p >= 0)
 		{
-			ft_pixel_put(v, st.x + i, st.y, v->color);
-			if (p >= 0)
-			{
-				st.y += dir;
-				p -= 2 * dx;
-			}
-			p += 2 * dy;
+			st.y += dir;
+			p -= 2 * dx;
 		}
+		p += 2 * dy;
 	}
 }
 
@@ -72,19 +72,19 @@ static void	draw_line_v(t_coord st, t_coord end, t_view *v)
 	dx = end.x - st.x;
 	dy = end.y - st.y;
 	check_helper(&dir, &dx);
-	if (dy != 0)
+	if (dy == 0)
+		return ;
+	p = 2 * dx - dy;
+	while (++i < dy + 1)
 	{
-		p = 2 * dx - dy;
-		while (++i < dy + 1)
+		v->color = interpolate_color(st.color, end.color, (float)i / dy);
+		ft_pixel_put(v, st.x, st.y + i, v->color);
+		if (p >= 0)
 		{
-			ft_pixel_put(v, st.x, st.y + i, v->color);
-			if (p >= 0)
-			{
-				st.x += dir;
-				p -= 2 * dy;
-			}
-			p += 2 * dx;
+			st.x += dir;
+			p -= 2 * dy;
 		}
+		p += 2 * dx;
 	}
 }
 
