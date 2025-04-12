@@ -53,4 +53,9 @@ cd fdf
 make
 ./fdf maps/42.fdf
 
-![Image](https://github.com/user-attachments/assets/7d547e98-6050-4673-bffe-ef37401b2f57)
+![image alt](https://github.com/diffusely/Fdf/blob/main/Screenshot%20from%202025-04-12%2021-00-38.png?raw=true)
+
+
+
+
+![Image](https://github.com/user-attachments/ahttps://github.com/diffusely/Fdf/blob/main/Screenshot%20from%202025-04-12%2021-00-38.png?raw=truessets/7d547e98-6050-4673-bffe-ef37401b2f57)
