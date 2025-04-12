@@ -53,5 +53,4 @@ cd fdf
 make
 ./fdf maps/42.fdf
 
-![Image](https://github.com/user-attachments/assets/daf97653-d27e-43d5-b07c-53a4937f7417)
-
+![Image](https://github.com/user-attachments/assets/95f1b12d-434b-4619-afae-487d31552034)
