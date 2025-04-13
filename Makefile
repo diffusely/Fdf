@@ -11,10 +11,10 @@ SRC			= main.c $(SRC_DIR)validation.c $(SRC_DIR)utils.c $(SRC_DIR)line.c $(SRC_D
 			
 OBJ			= $(SRC:%.c=%.o)
 
-MLX_FLAGS	= -L$(MLIBX) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
+MLX_FLAGS	= -L$(MLIBX) -lmlx -lXext -lX11 -lm -lz
 LIB_FLAGS	= -L$(GNL) -lgnl -L$(LIBFT) -lft
-IFLAG		= -I $(INCLUDES)
-CFLAG		= -Wall -Wextra -Werror
+IFLAG		= -I $(INCLUDES) -I$(LIBFT) -I$(GNL) -I$(MLIBX)
+CFLAG		= -Wall -Wextra -Werror #-g3 -fsanitize=address
 
 CC			= cc
 AR			= ar rcs
@@ -34,10 +34,10 @@ $(NAME):			$(OBJ)
 
 mainclean:
 					$(RM) $(OBJ)
+					make -C $(MLIBX) clean
 
 clean:				mainclean
 					make -C $(GNL) clean
-					make -C $(MLIBX) clean
 					make -C $(LIBFT) clean
 
 fclean: 			mainclean

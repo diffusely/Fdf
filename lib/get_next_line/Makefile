@@ -2,7 +2,7 @@ NAME 		= libgnl.a
 
 SRC 		= get_next_line.c get_next_line_utils.c
 
-INCLUDES 	= ../../includes
+INCLUDES 	= ../libft
 
 CFLAG 		= -Wall -Wextra -Werror -I $(INCLUDES)
 

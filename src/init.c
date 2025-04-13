@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: noavetis <noavetis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:30:01 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/12 19:52:28 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/13 18:48:20 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,17 @@ static int	*init_matrix_line(int width, int fd)
 	return (free(r), free(ptr), line);
 }
 
-static void	init_val(t_map *m, const char *file_name)
+static int	init_val(t_map *m, const char *file_name, t_view *v, int fd)
 {
-	m->height = get_height(file_name);
 	m->width = get_width(file_name);
+	if (m->width == -1)
+		return (free(m), free(v), -1);
+	m->height = get_height(file_name);
 	m->mt = (int **)malloc(m->height * sizeof(int *));
 	if (!m->mt)
-		error_handle("Bad alloc *matrix*!\n", 1);
+		return (free(v), fd_close(fd), -1);
+	return (1);
+	error_handle("Bad alloc *matrix*!\n", 1);
 }
 
 void	init_window(t_view *v)
@@ -68,7 +72,7 @@ void	init_window(t_view *v)
 	mlx_loop(v->mlx);
 }
 
-t_map	*init_matrix(const char *file_name)
+t_map	*init_matrix(const char *file_name, t_view *v)
 {
 	t_map	*m;
 	int		fd;
@@ -78,9 +82,10 @@ t_map	*init_matrix(const char *file_name)
 	if (!m)
 		error_handle("Bad alloc *matrix*!\n", 1);
 	fd = open_file(file_name);
-	init_val(m, file_name);
-	i = 0;
-	while (i < m->height)
+	if (init_val(m, file_name, v, fd) == -1)
+		error_handle("Map width incorrect!\n", 1);
+	i = -1;
+	while (++i < m->height)
 	{
 		m->mt[i] = init_matrix_line(m->width, fd);
 		if (!m->mt[i])
@@ -88,10 +93,10 @@ t_map	*init_matrix(const char *file_name)
 			while (--i >= 0)
 				free(m->mt[i]);
 			free(m->mt);
+			free(v);
 			fd_close(fd);
-			error_handle("Map is not valid!\n", 1);
+			error_handle("Bad alloc *matrix*!\n", 1);
 		}
-		i++;
 	}
 	return (fd_close(fd), m);
 }

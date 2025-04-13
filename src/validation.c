@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: noavetis <noavetis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 16:59:07 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/10 00:35:34 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/13 15:37:48 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	valid_map(char *message)
 	int	size;
 
 	size = ft_strlen(message);
-	if (message[size - 4] != '.' || message[size - 3] != 'f'
+	if (size < 4 || message[size - 4] != '.' || message[size - 3] != 'f'
 		|| message[size - 2] != 'd' || message[size - 1] != 'f')
 	{
 		error_handle("File format is not .fdf!\n", 1);

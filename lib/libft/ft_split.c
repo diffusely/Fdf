@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: noavetis <noavetis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 20:25:56 by noavetis          #+#    #+#             */
-/*   Updated: 2025/03/30 22:02:59 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/13 16:10:12 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	word_count(const char *str, char c)
+size_t	word_count(const char *str, char c)
 {
 	size_t	count;
 

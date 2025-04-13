@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: noavetis <noavetis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 22:15:51 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/12 19:52:13 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/13 21:32:17 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ static void	init_point(int i, int j, t_coord *st, t_view *v)
 	s = v->zoom * SIZE;
 	x = j * s;
 	y = i * s;
-	z = v->map->mt[i][j];
-	st->z = v->map->mt[i][j];
+	z = v->map->mt[i][j] * v->zoom;
+	st->z = v->map->mt[i][j] * v->zoom;
 	rotation(&x, &y, &z, v);
 	st->x = iso_x(x, y, v->t_flag) + v->map->point.x + WIDTH / 2;
 	st->y = iso_y(x, y, z, v->t_flag) + v->map->point.y + HEIGHT / 2;
@@ -69,8 +69,8 @@ static void	draw_horizontal(t_coord st, t_coord end, t_coord dir, t_view *v)
 	{
 		x = (dir.y + 1) * s;
 		y = dir.x * s;
-		end.z = v->map->mt[dir.x][dir.y + 1];
-		z = v->map->mt[dir.x][dir.y + 1];
+		end.z = v->map->mt[dir.x][dir.y + 1] * v->zoom;
+		z = v->map->mt[dir.x][dir.y + 1] * v->zoom;
 		init_color(&st, &end, 0);
 		rotation(&x, &y, &z, v);
 		end.x = iso_x(x, y, v->t_flag) + v->map->point.x + WIDTH / 2;
@@ -91,8 +91,8 @@ static void	draw_vertical(t_coord st, t_coord end, t_coord dir, t_view *v)
 	{
 		x = dir.y * s;
 		y = (dir.x + 1) * s;
-		z = v->map->mt[dir.x + 1][dir.y];
-		end.z = v->map->mt[dir.x + 1][dir.y];
+		z = v->map->mt[dir.x + 1][dir.y] * v->zoom;
+		end.z = v->map->mt[dir.x + 1][dir.y] * v->zoom;
 		init_color(&st, &end, 1);
 		rotation(&x, &y, &z, v);
 		end.x = iso_x(x, y, v->t_flag) + v->map->point.x + WIDTH / 2;
@@ -110,6 +110,7 @@ void	draw_map(t_view *v, int c1, int c2)
 	st.s_color = c1;
 	st.e_color = c2;
 	dir.x = 0;
+	ft_memset(&end, 0, sizeof(t_coord));
 	while (dir.x < v->map->height)
 	{
 		dir.y = 0;

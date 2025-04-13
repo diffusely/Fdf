@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noavetis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: noavetis <noavetis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 20:55:10 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/12 19:55:07 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/13 18:44:41 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,15 @@ int	get_width(const char *file_name)
 	{
 		free(ptr);
 		ptr = get_next_line(fd);
-		if (!ptr)
-			break ;
-		width = word_count_sep(ptr, " \n");
-		if (temp != width)
-			error_handle("Map width incorrect!\n", 1);
+		if (temp == width)
+		{
+			if (!ptr)
+				break ;
+			width = word_count_sep(ptr, " \n");
+		}
 	}
+	if (temp != width)
+		return (fd_close(fd), free(ptr), -1);
 	return (fd_close(fd), temp);
 }
 
