@@ -6,7 +6,7 @@
 /*   By: noavetis <noavetis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:12:55 by noavetis          #+#    #+#             */
-/*   Updated: 2025/03/26 20:22:00 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:53:53 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	*get_next_line(int fd)
 	char			*result;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+		return (free(ptr), NULL);
 	if (gnl_check(&result, &ptr))
 		return (result);
 	read_size = read(fd, buffer, BUFFER_SIZE);

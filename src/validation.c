@@ -6,7 +6,7 @@
 /*   By: noavetis <noavetis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 16:59:07 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/13 15:37:48 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:22:45 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	valid_map(char *message)
 
 void	fd_close(int fd)
 {
-	if (close(fd) == -1)
+	if (fd == -1)
 	{
 		error_handle("System error", 0);
 	}

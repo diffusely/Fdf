@@ -6,7 +6,7 @@
 /*   By: noavetis <noavetis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:30:01 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/13 18:48:20 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:31:51 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ static int	*init_matrix_line(int width, int fd)
 
 static int	init_val(t_map *m, const char *file_name, t_view *v, int fd)
 {
+	if (fd == -1)
+	{
+		free(m);
+		free(v);
+		error_handle("System error", 0);
+	}
 	m->width = get_width(file_name);
 	if (m->width == -1)
 		return (free(m), free(v), -1);
@@ -81,7 +87,7 @@ t_map	*init_matrix(const char *file_name, t_view *v)
 	m = (t_map *)malloc(sizeof(t_map));
 	if (!m)
 		error_handle("Bad alloc *matrix*!\n", 1);
-	fd = open_file(file_name);
+	fd = open(file_name, O_RDONLY);
 	if (init_val(m, file_name, v, fd) == -1)
 		error_handle("Map width incorrect!\n", 1);
 	i = -1;

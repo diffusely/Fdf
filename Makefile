@@ -14,7 +14,7 @@ OBJ			= $(SRC:%.c=%.o)
 MLX_FLAGS	= -L$(MLIBX) -lmlx -lXext -lX11 -lm -lz
 LIB_FLAGS	= -L$(GNL) -lgnl -L$(LIBFT) -lft
 IFLAG		= -I $(INCLUDES) -I$(LIBFT) -I$(GNL) -I$(MLIBX)
-CFLAG		= -Wall -Wextra -Werror #-g3 -fsanitize=address
+CFLAG		= -Wall -Wextra -Werror
 
 CC			= cc
 AR			= ar rcs

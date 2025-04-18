@@ -6,7 +6,7 @@
 /*   By: noavetis <noavetis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 21:58:42 by noavetis          #+#    #+#             */
-/*   Updated: 2025/04/13 18:00:21 by noavetis         ###   ########.fr       */
+/*   Updated: 2025/04/16 21:20:38 by noavetis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "mlx.h"
 # include "libft.h"
 
-# define WIDTH	2000
+# define WIDTH	2800
 # define HEIGHT	1800
 # define SIZE 100
 
